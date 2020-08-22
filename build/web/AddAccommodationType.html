@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Accommodation Portal</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+        <style>
+            body {
+                background-color: lightgray;
+            }
+            .container{
+                padding-top: 10px;
+            }
+            .card{
+                padding-top: 5px;
+            }
+            .table{
+                padding-top: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <a class="navbar-brand" href="#">Welcome </a>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="welcomeadmin">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="welcomeadmin">Accommodations</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0"  action="logout"  method="post">
+                    <button class="btn btn-outline-default my-2 my-sm-0" type="submit">Logout</button>
+                </form>
+            </div>
+        </nav>
+        <div class="col-md-12 container "style="height:700px">
+            <div class="card" >
+                <div class="card-body">
+                    <form action="AddAccommodationType"  method="post">
+                        <div class="form-group row">
+                            <label for="type" class="col-sm-2 col-form-label">
+                                Type</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="type"
+                                       placeholder="Enter type of room">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="available" class="col-sm-2 col-form-label">
+                                Available Number</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="available"
+                                       placeholder="Enter number of room available.">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="align-items: center;">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

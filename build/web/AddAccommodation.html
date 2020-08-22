@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Accommodation Portal</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+        <style>
+            body {
+                background-color: lightgray;
+            }
+            .container{
+                padding-top: 10px;
+            }
+            .card{
+                padding-top: 5px;
+            }
+            .table{
+                padding-top: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <a class="navbar-brand" href="#">Welcome </a>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="admin">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin">Accommodations</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0"  action="logout"  method="post">
+                    <button class="btn btn-outline-default my-2 my-sm-0" type="submit">Logout</button>
+                </form>
+            </div>
+        </nav>
+        <div class="col-md-12 container " style="height: 700px">
+            <div class="card">
+                <div class="card-body">
+                    <form action="AddAccommodation" method="post">
+                        <div class="form-group row">
+                            <label for="location" class="col-sm-2 col-form-label">
+                                Select a Type:&nbsp; </label>
+                            <div class="col-sm-7">
+                                <select name="type" class="form-control" id="type">
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="location" class="col-sm-2 col-form-label">
+                                Location</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="location"
+                                       placeholder="Enter location of room.">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="charge" class="col-sm-2 col-form-label">
+                                Monthly Charge</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="charge"
+                                       placeholder="Enter monthly charge.">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="description" class="col-sm-2 col-form-label">
+                                Description</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="description"
+                                       placeholder="Enter description.">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary"
+                                style="align-items: center;">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+<script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        $.ajax({
+            url: 'http://localhost:8080/StudentPortal/data?type=type',
+            type: 'GET',
+            dataType: "json",
+            success: function (responseText) {
+                var tableStr = "";
+                jQuery.each(responseText, function (i, val) {
+                    $('#type').append(`<option value="${val.id}"> 
+                                       ${val.type} 
+                                  </option>`)
+                });
+
+
+            },
+            error: function (request, status, error) {
+            }
+        });
+    });
+</script>

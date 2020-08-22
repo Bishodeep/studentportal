@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Accommodation Portal</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+        <style>
+            body {
+                background-color: lightgray;
+            }
+            .container{
+                padding-top: 10px;
+            }
+            .card{
+                padding-top: 5px;
+            }
+            .table{
+                padding-top: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <a class="navbar-brand" href="#">Welcome  </a>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="welcomeadmin">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="welcomeadmin">Accommodations</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0"  action="logout"  method="post">
+                    <button class="btn btn-outline-default my-2 my-sm-0" type="submit">Logout</button>
+                </form>
+            </div>
+        </nav>
+        <div class="col-md-12 container" style="height:700px">
+            <div class="card" >
+                <div class="card-body">
+                    <div class="list-part">
+                        <h4 class="card-title">Edit Room Type</h4>
+
+                        <div class="inner-list-part d-flex">
+                            <form class="form-inline my-2 my-lg-0"  action="welcomeadmin"  method="get">
+                                <button class="btn btn-success my-2 my-sm-0" type="submit">Back</button>
+                            </form>
+                        </div>
+                    </div>
+                    <form action="EditAccommodationType" method="post" id="editform">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script>
+    function getParameter(parm) {
+                var url = window.location.search.substring(1),
+                    urlval = url.split('&'),
+                    parmName,
+                    i;
+
+                for (i = 0; i < urlval.length; i++) {
+                    parmName = urlval[i].split('=');
+
+                    if (parmName[0] === parm) {
+                        return parmName[1] === undefined ? true : decodeURIComponent(parmName[1]);
+                    }
+                }
+            };
+             var id = getParameter('id');
+    $.ajax({
+        url: 'http://localhost:8080/StudentPortal/data?type=updateroomtype&id='+id,
+        type: 'GET',
+        dataType: "json",
+        success: function (val) {
+            var tableStr = "";
+            tableStr += "<input type=\"text\" class=\"form-control\" name=\"id\"\n" +
+                    "						placeholder=\"Enter type of room\" hidden value=\""+val.id+"\">\n" +
+                    "					<div class=\"form-group row\">\n" +
+                    "						<label for=\"type\" class=\"col-sm-2 col-form-label\"> Type</label>\n" +
+                    "						<div class=\"col-sm-7\">\n" +
+                    "							<input type=\"text\" class=\"form-control\" name=\"type\"\n" +
+                    "								placeholder=\"Enter type of room\" value=\""+val.type+"\">\n" +
+                    "						</div>\n" +
+                    "					</div>\n" +
+                    "\n" +
+                    "					<div class=\"form-group row\">\n" +
+                    "						<label for=\"available\" class=\"col-sm-2 col-form-label\">\n" +
+                    "							Available Number</label>\n" +
+                    "						<div class=\"col-sm-7\">\n" +
+                    "							<input type=\"text\" class=\"form-control\" name=\"available\"\n" +
+                    "								placeholder=\"Enter number of room available.\"\n" +
+                    "								value=\""+val.available+"\">\n" +
+                    "						</div>\n" +
+                    "					</div>\n" +
+                    "\n" +
+                    "					<button type=\"submit\" class=\"btn btn-primary\"\n" +
+                    "						style=\"align-items: center;\">Edit</button>";
+            $('#editform').append(tableStr);
+            //alert.show(JSON.parse(responseText))
+
+        },
+        error: function (request, status, error) {
+        }
+    });
+
+</script>
